@@ -28,7 +28,7 @@ class Graph:
                 res.append(elem)
         return res
 
-    def double_take(self, node):
+    def find_way(self, node):
         if node not in self.way:
             self.way.append(node)
         self.visited.append(node)
@@ -41,11 +41,11 @@ class Graph:
         watch.extend(temp)
         for child in watch:
             # print(child)
-            return self.double_take(child)
+            return self.find_way(child)
         self.way.remove(node)
         if self.way == []:
             return None
-        return self.double_take(self.way[-1])
+        return self.find_way(self.way[-1])
 
     # Получить детей node
     def get_children(self, node):
@@ -111,13 +111,13 @@ for _ in range(k):
 
 graph = Graph(graph, start, finish)
 
-way = graph.double_take(graph.start)
+way = graph.find_way(graph.start)
 while way:
     graph.relax(graph.find_min_flow())
     graph.way = []
     graph.visited = []
     graph.flows = []
-    way = graph.double_take(graph.start)
+    way = graph.find_way(graph.start)
 
 res = 0
 for child in graph.get_children(graph.start):
