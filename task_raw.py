@@ -106,7 +106,7 @@ for _ in range(k):
     n = input()
     st, fin, w = n.split(' ')
     graph.setdefault(st, dict())
-    # [Пропускная способность ребра, поток по ребру, поток против ребра]
+    # [Пропускная способность ребра, текущий поток по ребру]
     graph[st][fin] = [int(w), 0]
 
 graph = Graph(graph, start, finish)
